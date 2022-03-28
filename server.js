@@ -13,7 +13,6 @@ app.use(
     })
 )
 
-
 app.get('/', db.getUsers)
 
 app.get('/customers/:id', db.getUserByQuery)
@@ -24,4 +23,4 @@ app.get('/info/:id', db.getInfoById)
 
 app.get('/delete/:id', db.deleteUser)
 
-app.listen(port, () => console.log(`running on port ${port}`))
+app.listen(port, () => console.log(`Listening on port ${port}`))
