@@ -1,0 +1,71 @@
+<div class="card card-table mt-4 mb-4">
+    <table class="table table-striped">
+        <thead class="table-primary">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Iban</th>
+                <th>Balance</th>
+                <th class="text-center border-start"><i class="fas fa-list"></i></th>
+            </tr>
+        </thead>
+        <tbody>
+            <% data.forEach(e=> { %>
+                <tr id=<%=e.id %>>
+                    <td>
+                        <b>#<%= e.id %></b>
+                    </td>
+                    <td>
+                        <%= e.name %>
+                    </td>
+                    <td>
+                        <%= e.phone %>
+                    </td>
+                    <td>
+                        <%= e.email %>
+                    </td>
+                    <td>
+                        <%= e.iban %>
+                    </td>
+                    <td>
+                        <%= e.amount %>
+                    </td>
+                    <td class="border-start text-center">
+                        <i class="fas fa-info-circle view-data" id=<%=e.id %>></i>
+                        <i class="fas fa-trash delete-data" id=<%=e.id %>></i>
+                    </td>
+                </tr>
+                <% })%>
+        </tbody>
+        <tfoot>
+            <tr>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+
+<style>
+    .card-table {
+        max-height: 70vh;
+        overflow: auto;
+    }
+
+    tr {
+        font-size: 14px;
+        transition: 0.5s;
+    }
+
+    tr i {
+        cursor: pointer;
+    }
+
+    .view-data:hover {
+        color: #0d6efd;
+    }
+
+    .delete-data:hover {
+        color: #dc3545;
+    }
+</style>

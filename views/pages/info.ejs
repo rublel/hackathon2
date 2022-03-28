@@ -1,0 +1,174 @@
+<div class="card">
+    <div class="card-header">
+        <span>Customer: <b>#<%= data[0].id %></b>
+        </span>
+        <span id="openedAt">Opened at: <%= data[0].date_opening %>
+        </span>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-lg-6 border-end">
+                <div class="card card-info bg-light p-2">
+                    <div>
+                        <span class="logoInfo"><i class="fas fa-user-circle"></i></span>
+                        <span>
+                            <%= data[0].name %>
+                        </span>
+                    </div>
+                    <div class="mt-3">
+                        <span class="logoInfo">
+                            <i class="fas fa-map-pin"></i>
+                        </span>
+                        <span>
+                            <%= data[0].country %>, <%= data[0].region %>
+                        </span>
+                    </div>
+                    <div class="mt-3">
+                        <span class="logoInfo"><i class="fas fa-phone"></i></span>
+                        <span>
+                            <%= data[0].phone %>
+                        </span>
+                    </div>
+                    <div class="mt-3">
+                        <span class="logoInfo"><i class="fas fa-envelope"></i></span>
+                        <span>
+                            <%= data[0].email %>
+                        </span>
+                    </div>
+                    <div class="mt-3 mb-3">
+                        <span class="logoInfo"><i class="fas fa-receipt"></i></span>
+                        <span>
+                            <%= data[0].iban %>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="mt-1">
+                    <div id="statusCard">
+                        <span id="status">
+                            Status of card:
+                        </span>
+                        <span id="logoStatus"><i class="fas fa-toggle-on text-success"></i> <span
+                                class="text-success">Active</span></span>
+                    </div>
+                    <div class="credit-card mt-2">
+                        <div id="headerCard">
+                            <span id="bankName">
+                                <i class="fas fa-university"></i> Revolut
+                            </span>
+                            <span id="wifi"><i class="fas fa-wifi"></i></span>
+                        </div>
+                        <div id="cardBody">
+                            <p id="userPanCard">
+                                <%= data[0].pan %>
+                            </p>
+                            <span id="userCvvCard">
+                                <%= data[0].cvv %>
+                            </span>
+                            <span id="userExpCard">
+                                <%= data[0].date_of_expiration %>
+                            </span>
+                        </div><br>
+                        <div class="cardFooter">
+                            <span id="userNameCard">
+                                <%= data[0].name %>
+                            </span>
+                            <span class="logoCard"><i class="fab fa-cc-visa"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer">
+        <p class="alert alert-primary mt-3 text-center"><i class="fas fa-star"></i>
+            Total amount: <b>
+                <%= data[0].amount %>
+            </b>
+        </p>
+    </div>
+
+</div>
+
+<style>
+    .credit-card {
+        background: linear-gradient(to top left, #e66465, #9198e5);
+        border-radius: 10px;
+        padding: 10px 20px;
+        backdrop-filter: blur(30px);
+        box-shadow: 0 0 80px rgba(0, 0, 0, 0.2);
+        overflow: hidden;
+    }
+
+    .card-info .logoInfo {
+        text-align: center;
+    }
+
+    .card-info .logoInfo i {
+        width: 30px;
+        color: #cfe2ff;
+    }
+
+    #statusCard,
+    #details {
+        color: grey;
+        font-size: 14px;
+    }
+
+
+    #userPanCard,
+    #userExpCard,
+    #userCvvCard,
+    #userNameCard {
+        color: rgba(255, 255, 255, 0.8);
+        font-weight: 400;
+        letter-spacing: 2px;
+        text-shadow: 0 0 2px rgba(0, 0, 0, 0.6);
+    }
+
+    #userNameCard {
+        font-size: 0.8rem;
+    }
+
+    #cardFooter,
+    #headerCard,
+    #cardBody,
+    .card-header {
+        position: relative;
+    }
+
+    #userExpCard {
+        position: absolute;
+        right: 0px;
+    }
+
+    #openedAt {
+        position: absolute;
+        right: 20px;
+        font-size: 14px;
+        font-style: italic;
+        color: grey;
+    }
+
+    #logoStatus {
+        position: absolute;
+        right: 20px;
+    }
+
+    .logoCard i {
+        position: absolute;
+        right: 20px;
+        font-size: 25px;
+    }
+
+    #headerCard #wifi {
+        position: absolute;
+        right: 0px;
+        transform: rotate(90deg);
+    }
+
+    #userPanCard {
+        padding: 12px 0px;
+    }
+</style>

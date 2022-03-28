@@ -1,0 +1,62 @@
+<div class="row">
+    <div class="col-lg-3">
+        <div class="card mt-4">
+            <div class="card-header">
+                <h6>
+                    <i class="fas fa-users"></i> Customers
+                </h6>
+            </div>
+            <div class="card-body">
+                <h4>
+                    <%= data.length %>
+                </h4>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3">
+        <div class="card mt-4">
+            <div class="card-header">
+                <h6>
+                    <i class="fas fa-sync-alt"></i> Total Balance
+                </h6>
+            </div>
+            <div class="card-body">
+                <h4>
+                    <%= data.map(e=> parseFloat(e.amount.split(" ").join(""))).reduce((prev,curr)=>prev+curr).toFixed(2)
+                        %>
+                        €
+                </h4>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3">
+        <div class="card mt-4">
+            <div class="card-header">
+                <h6>
+                    <i class="fas fa-search"></i> Search
+                </h6>
+            </div>
+            <div class="card-body">
+                <input type="search" name="search" id="search" class="form-control" placeholder="Search customer by ID">
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3">
+        <div class="card mt-4">
+            <div class="card-header">
+                <h6>
+                    <i class="fas fa-list"></i> Listing
+                </h6>
+            </div>
+            <div class="card-body">
+                <select name="listing" id="listingCustomers" class="form-select">
+                    <option>List per page</option>
+                    <option value="50">50</option>
+                    <option value="200">200</option>
+                    <option value="500">500</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="content">

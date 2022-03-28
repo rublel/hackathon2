@@ -1,0 +1,88 @@
+</div>
+</div>
+</body>
+<div id="dataModal" class="modal fade" style="display: none;" aria-modal="true" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title"></h4>
+            </div>
+            <div class="modal-body" id="employee_detail"></div>
+            <div class="modal-footer"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).on("click", ".return", function () {
+        $('#dataModal').modal("hide")
+    })
+    $(document).on("click", ".view-data", function () {
+        $('#dataModal h4').html("<i class='fas fa-info-circle text-primary'></i> Informations")
+        $('.modal-footer').html(`<button class= 'btn btn-secondary return' > Close</button > `)
+        let id = $(this).attr("id");
+        $.ajax({
+            url: `http://localhost:3000/info/${id}`,
+            method: "GET",
+            success: function (data) {
+                $('#dataModal').modal("show")
+                $('#employee_detail').html(data)
+            }
+        });
+    })
+    $(document).on("click", ".delete-data", function () {
+        let id = $(this).attr("id");
+        $('#dataModal h4').html("<i class='fas fa-exclamation-circle text-danger'></i> Advertissement")
+        $('#dataModal').modal("show")
+        $('#employee_detail').html(`<p class='alert alert-danger'>Really want to delete this customer: <b>#${id}</b> ?</p>`)
+        $('.modal-footer').html(`<button class= 'btn btn-secondary return' > No</button > <button id='confirmDelete' class='btn btn-danger'>Confirm</button>`)
+        $(document).on("click", "#confirmDelete", function () {
+            $.ajax({
+                url: `http://localhost:3000/delete/${id}`,
+                method: "GET",
+                success: function (data) {
+                    $('#employee_detail').html(`<div class='alert alert-danger'>${data}</div>`)
+                    $('.modal-footer').html(`<button id = 'refreshData' class= 'btn btn-secondary' > Close</button > `)
+                }
+            });
+        })
+        $(document).on("click", "#refreshData", function () {
+            $('#dataModal').modal("hide")
+            window.location.reload()
+        })
+    })
+    $(document).on("input", "#search", function (e) {
+        e.preventDefault()
+        let query = $(this).val()
+        if (!isNaN(query) && query != " ") {
+            $.ajax({
+                url: `http://localhost:3000/customers/${query}`,
+                method: "GET",
+                success: function (data) {
+                    $('.content').html(data)
+                }
+            });
+        } else {
+            $.ajax({
+                url: `http://localhost:3000/customers`,
+                method: "GET",
+                success: function (data) {
+                    $('.content').html(data)
+                }
+            });
+        }
+    })
+    $(document).on("input", "#listingCustomers", function () {
+        let perPage = parseInt($("#listingCustomers option:selected").val())
+        $.ajax({
+            url: `http://localhost:3000/rows/${perPage}`,
+            method: "GET",
+            success: function (data) {
+                window.location.href = `http://localhost:3000/rows/${perPage}`
+            }
+        });
+
+    })
+</script>
+
+</html>
